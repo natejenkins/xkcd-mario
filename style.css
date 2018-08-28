@@ -1,0 +1,195 @@
+#comic {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+/*#images {
+  z-index: 1;
+  overflow: hidden;
+  margin: 0px auto;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 50%;
+  top:0;
+}*/
+
+.canvas-layer {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+}
+
+.dot {
+  z-index: 10000;
+  position: fixed;
+  border: none;
+  font-size: 8em;
+  color: #333333;
+}
+
+#button-up{
+  bottom: 0.05em;
+  right: 0.0em;
+}
+
+#button-action{
+  bottom: 0.05em;
+  right: 1em;
+}
+
+#button-bomb{
+  bottom: 0.05em;
+  right: 1.75em;
+}
+
+#button-down{
+  bottom: 0.05em;
+  left: 2em;
+}
+
+#button-left{
+  bottom: 0.05em;
+  left: 0em;
+}
+
+#button-right{
+  bottom: 0.05em;
+  left: 1em;
+}
+
+#scoreboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+  color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  /*-webkit-text-stroke-color: black;*/
+}
+#score-indicator{
+  margin: 10px 10px;
+}
+
+#coin-indicator{
+  margin: 10px 0px;
+}
+
+#settings-icon{
+  margin: 10px 30px;
+}
+
+
+#settings-icon,
+#settings-icon {
+    cursor: pointer;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+/*from https://www.w3schools.com/howto/howto_css_modals.asp*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 2rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    font-size: 2em;
+    font-family: 'Abril Fatface', cursive;
+    overflow-y: auto;
+    height: calc(100% - 5rem);
+}
+
+.modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h1{
+  text-align: center;
+  font-size: 10vh;
+}
+
+/* from https://stackoverflow.com/questions/493296/css-display-an-image-resized-and-cropped */
+.credit-row {
+
+}
+
+.credit-row img {
+    width: 2em;
+    height: 2em;
+    object-fit: cover;
+    object-position: left center;
+    vertical-align:bottom
+}
+
+a {
+  color: inherit;
+}
+
+.button {
+  border: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  height: 15vh;
+  width: 80%;
+  margin: auto;
+  /*font-size: 2em;*/
+  font-size: 10vh;
+  text-align: center;
+}
+
+.button:hover {
+    background-color:#ccc;
+    /*opacity:1.0;*/
+}
+
+.volume-indicator{
+  margin-left: 5rem;
+}
+
+.hidden{
+  display: none;
+}

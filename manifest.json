@@ -1,0 +1,6 @@
+{
+  "short_name": "XKCD Mario-ish",
+  "name": "XKCD Mario-ish",
+  "display":      "fullscreen", /* Could be "fullscreen", "standalone", "minimal-ui", or "browser" */
+  "orientation":  "landscape" /* Could be "landscape" or "portrait" */
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <title>XKCD mario-ish</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Abril+Fatface" rel="stylesheet">
+  <link href='style.css' rel='stylesheet' type='text/css' />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <script src="jquery-1.8.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.14/howler.core.min.js"></script>
+  <script>
+    Howler.mobileAutoEnable = false
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.2/localforage.min.js"></script>
+  <script src='register_service_worker.js'></script>
+  <script src='service_worker.js'></script>
+  <script src='lib/credits.js'></script>
+  <script src='lib/start_screen.js'></script>
+  <script src='lib/tile_animations.js'></script>
+  <script src='lib/filehash.js'></script>
+  <script src='lib/creature.js'></script>
+  <script src='lib/stickman.js'></script>
+  <script src='lib/pipe.js'></script>
+  <script src='lib/plant.js'></script>
+  <script src='lib/cage.js'></script>
+  <script src='lib/princess.js'></script>
+  <script src='lib/square.js'></script>
+  <script src='lib/coin.js'></script>
+  <script src='lib/flower.js'></script>
+  <script src='lib/mushroom_man.js'></script>
+  <script src='lib/fireball.js'></script>
+  <script src='lib/fire.js'></script>
+  <script src='lib/bomb.js'></script>
+  <script src='lib/crater.js'></script>
+  <script src='lib/explosion.js'></script>
+  <script src='lib/bowser.js'></script>
+  <script src='lib/world.js'></script>
+  <script src='lib/keyboard.js'></script>
+  <script src='lib/initial_game_state.js'></script>
+  <script src="touch.js"></script>
+  <script src="lib/1111.js"></script>
+
+
+</head>
+<body oncontextmenu="return false;">
+  <div id="comic" class="scene-dimensions">
+    <div id='scoreboard'>
+      <div id="score-indicator">Score: <span id="score">0</span></div>
+      <div id="coin-indicator">Coins: <span id="coins-collected">0</span>/<span id='total-coins'></span></div>
+      <i class="fas fa-cog" id="settings-icon"></i>
+    </div>
+    <i class='dot fas fa-arrow-circle-up' id='button-up'></i>
+    <i class='dot fas fa-arrow-circle-down' id='button-down'></i>
+    <i class='dot fas fa-arrow-circle-left' id='button-left'></i>
+    <i class='dot fas fa-arrow-circle-right' id='button-right'></i>
+    <i class="dot fab fa-gripfire" id='button-action'></i>
+    <i class="dot fas fa-bomb" id='button-bomb'></i>
+    <canvas class='canvas-layer' id="stickman-canvas">
+      Sorry your browser does not support canvas layers.
+    </canvas>
+  </div>
+  <div id="images"></div>
+
+   <!-- from https://www.w3schools.com/howto/howto_css_modals.asp -->
+  <div id="credits-modal" class="modal">
+    <div class="modal-content">
+        <div class='modal-close', id='credits-modal-close'>&times;</div>
+        <h1>Credits:</h1>
+        <div>First off a big thanks to Randall Munroe for his excellent
+          <a href='https://xkcd.com/1110/'>1110 comic</a>
+          <a href='https://creativecommons.org/licenses/by-nc/2.5/legalcode' target='_blank'>(license)</a>,
+          which is the source of all of the background images (ie the world).
+        </div>
+        <h2>Assets:</h2>
+        <div class='credit-row'>
+          <img src='stick_figures/bomb-wick32.png'>
+          <a href='https://opengameart.org/content/bomb-0' target='_blank'>Bomb</a>
+          by <a href='https://opengameart.org/users/truezipp' target='_blank'>Yevhen Danchenko</a>
+          <a href='https://creativecommons.org/publicdomain/zero/1.0/legalcode' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <img src='stick_figures/explosion_01_strip13.png'
+            style="object-position: -175px center;"
+          >
+          <a href='https://opengameart.org/content/simple-explosion-bleeds-game-art' target='_blank'>Explosion</a>
+          by <a href='http://remusprites.carbonmade.com/' target='_blank'>Bleed</a>
+          <a href='https://creativecommons.org/licenses/by/3.0/legalcode' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <img src='stick_figures/coin.png'>
+            <a href='https://opengameart.org/content/spincoin' target='_blank'>Coin</a>
+            by <a href='https://opengameart.org/users/spring' target='_blank'>Spring Enterprises Independent</a>
+            <a href='https://creativecommons.org/licenses/by/3.0/legalcode' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <img src='stick_figures/flame_frames.png' style="width: 1.65em; padding: 0 0.35em 0 0" >
+          <a href='https://opengameart.org/content/animated-flame' target='_blank'>Flame</a>
+          by <a href='https://opengameart.org/users/dorkster' target='_blank'>Justin Jacobs</a>
+          <a href='https://creativecommons.org/licenses/by-sa/3.0/legalcode' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <img src='stick_figures/flower.png' style="object-position: right center;" >
+          <a href='https://opengameart.org/content/lpc-flower-grow-cycle' target='_blank'>Flower</a>
+          by <a href='https://opengameart.org/users/sharm' target='_blank'>Lanea Zimmerman</a> with contributions from <a href='https://opengameart.org/users/madmarcel' target='_blank'>Marcel</a>
+          <a href='https://creativecommons.org/licenses/by/3.0/legalcode' target='_blank'>(license)</a>
+        </div>
+        <h2>Sounds:</h2>
+        <div class='credit-row'>
+          <a href='https://www.zapsplat.com/music/cartoon-bounce-then-rising-whistle-1/' target='_blank'>Flower sound</a>
+          from <a href='https://www.zapsplat.com' target='_blank'>https://www.zapsplat.com</a>
+          <a href='https://www.zapsplat.com/license-type/standard-license/' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <a href='https://www.zapsplat.com/music/cartoon-bubble-pop-2-4/' target='_blank'>Squish sound</a>
+          from <a href='https://www.zapsplat.com' target='_blank'>https://www.zapsplat.com</a>
+          <a href='https://www.zapsplat.com/license-type/standard-license/' target='_blank'>(license)</a>
+        </div>
+        <div class='credit-row'>
+          <a href='https://www.zapsplat.com/music/fabric-money-pouch-with-coins-in-pick-up-2/' target='_blank'>Coin sound</a>
+          from <a href='https://www.zapsplat.com' target='_blank'>https://www.zapsplat.com</a>
+          <a href='https://www.zapsplat.com/license-type/standard-license/' target='_blank'>(license)</a>
+        </div>
+        <h2>The Rest:</h2>
+        <div class='credit-row'>
+          All other assets, music, and gameplay were created by <a href='https://natejenkins.ch' target='_blank'>Nathan Jenkins</a>
+        </div>
+    </div>
+  </div>
+  <div id="start-modal" class="modal show">
+    <div class="modal-content">
+      <div class='modal-close', id='start-modal-close'>&times;</div>
+      <h1>XKCD Mario-ish
+        <span class="fa-stack fa-xs volume-indicator" id='volume-on-indicator'>
+          <i class="fas fa-volume-up fa-stack-1x"></i>
+          <i class="far fa-circle fa-stack-2x"></i>
+        </span>
+        <span class="fa-stack fa-xs volume-indicator hidden" id='volume-off-indicator'>
+          <i class="fas fa-volume-up fa-stack-1x"></i>
+          <i class="fas fa-ban fa-stack-2x" style='color: tomato;'></i>
+          <!-- <i class="far fa-times-circle fa-stack-2x"></i> -->
+        </span>
+      </h1>
+
+
+
+      <div class='button' id='start-button'>Start</div>
+      <div class='button' id='load-button'>Load</div>
+      <div class='button' id='save-button'>Save</div>
+      <div class='button' id='credits-button'>Credits</div>
+    </div>
+  </div>
+</body>
+
