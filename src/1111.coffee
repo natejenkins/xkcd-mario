@@ -87,12 +87,6 @@ $( window ).resize () =>
 
 Map = ($container) ->
   @init = ->
-    history.pushState null, null, location.href
-
-    window.onpopstate = ->
-      history.go 1
-      return
-
     # looks like this is [north_tiles, east_tiles, south_tiles, west_tiles] with padding on
     # both north and south
     size = [14, 48, 25, 33]

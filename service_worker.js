@@ -16,7 +16,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var cacheVersion = 1
+var cacheVersion = 2
 var cacheName = "xkcd" + cacheVersion
 
 // Install event - cache files (...or not)

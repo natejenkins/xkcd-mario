@@ -34,32 +34,32 @@
 
 #button-up{
   bottom: 0.05em;
-  right: 0.0em;
+  right: 0.25em;
 }
 
 #button-action{
   bottom: 0.05em;
-  right: 1em;
+  right: 1.25em;
 }
 
 #button-bomb{
   bottom: 0.05em;
-  right: 1.75em;
+  right: 2.00em;
 }
 
 #button-down{
   bottom: 0.05em;
-  left: 2em;
+  left: 2.25em;
 }
 
 #button-left{
   bottom: 0.05em;
-  left: 0em;
+  left: 0.25em;
 }
 
 #button-right{
   bottom: 0.05em;
-  left: 1em;
+  left: 1.25em;
 }
 
 #scoreboard {
