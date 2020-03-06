@@ -4,7 +4,7 @@
 
 ## Game
 
-Available [here](https://natejenkins.ch/xkcd)
+Available [here](https://natejenkins.ch/xkcd-mario)
 
 ## Development setup
 
